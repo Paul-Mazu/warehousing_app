@@ -11,6 +11,6 @@ It will be custom, dynamic web application that stores the information in a data
 
 - keep track of:
 -- stock location
--- quanity
+-- quantity
 - allow the users move the stock across departments
 - allow place orders
