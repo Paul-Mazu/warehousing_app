@@ -1,4 +1,5 @@
-from itertools import count
+import pprint
+
 from data import warehouse1, warehouse2
 
 user_name = input("What is your user name?: ")
@@ -33,8 +34,13 @@ def menu():
 
 
 def printing_warehouses():
-    print(warehouse1, "\n")
-    print(warehouse2, "\n")
+    print('\nWarehouse 1:\n')
+    for first, second, third in zip(warehouse1[::3], warehouse1[1::3], warehouse1[2::3]):
+        print(f'{first:30}{second:30}{third:30}')
+
+    print('\nWarehouse 2:\n')
+    for first, second, third in zip(warehouse2[::3], warehouse2[1::3], warehouse2[2::3]):
+        print(f'{first:30}{second:30}{third:30}')
 
 
 def searching_engine(item):
@@ -131,8 +137,6 @@ def ordering_items(item, sum_of_available_items):
 
             elif answer == 4:
                 return True
-
-    return
 
 
 start()
