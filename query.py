@@ -2,7 +2,12 @@ import pprint
 
 from data import warehouse1, warehouse2
 
-user_name = input("What is your user name?: ")
+while True:
+    user_name = input("What is your user name?: ")
+    if len(user_name):
+        break
+    else:
+        print('Please input your user name')
 
 
 def start():
@@ -12,20 +17,20 @@ def start():
 
 def menu():
     while True:
-        user_choice = int(input(
+        user_choice = input(
             '\nWhat would you like to do?\n'
             '1. List items by warehouse\n'
             '2. Search an item and place an order\n'
             '3. Quit\n'
-            'Type the number of the operation: '))
+            'Type the number of the operation: ')
 
-        if user_choice == 1:
+        if user_choice == '1':
             printing_warehouses()
 
-        elif user_choice == 2:
+        elif user_choice == '2':
             ordering_logic()
 
-        elif user_choice == 3:
+        elif user_choice == '3':
             print(f"Thank you for your visiting {user_name}")
             break
 
@@ -43,22 +48,43 @@ def printing_warehouses():
         print(f'{first:30}{second:30}{third:30}')
 
 
-def searching_engine(item):
-    available_items_in_warehouse1 = warehouse1.count(item)
-    available_items_in_warehouse2 = warehouse2.count(item)
-    available_items_dictionary = {"warehouse1": available_items_in_warehouse1,
-                                  "warehouse2": available_items_in_warehouse2}
-    return available_items_dictionary
+def searching_logic(item):
+    while True:
+        available_items_in_warehouse1 = warehouse1.count(item.capitalize())
+        available_items_in_warehouse2 = warehouse2.count(item.capitalize())
+        available_items_dictionary = {"warehouse1": available_items_in_warehouse1,
+                                      "warehouse2": available_items_in_warehouse2}
+        suma = available_items_in_warehouse1 + available_items_in_warehouse2
+        if suma > 0:
+            return available_items_dictionary
+        else:
+            wh_set = {i for i in warehouse1 if item.lower() in i.lower()} | {i for i in warehouse2 if item.lower() in i.lower()}
+            wh_tuple = tuple(wh_set)
+            if len(wh_set) > 0:
+                print('We did not find the item, did you mean?: ')
+                print('0. Go back')
+                counter = 0
+                for i in wh_set:
+                    counter += 1
+                    print(f'{counter}. {i}')
+
+                item_pick_from_number = input('Choose number or "0" to return to search: ')
+                if int(item_pick_from_number) == 0:
+                    return {}
+                elif int(item_pick_from_number) in range(len(wh_tuple)):
+                    item = wh_tuple[int(item_pick_from_number)-1]
+            else:
+                return {}
 
 
 def order_max_or_not():
     while True:
-        choice = int(input('Would you like to order:\n'
-                           '1. maximum items\n'
-                           '2. different number of items\n'
-                           '3. check another item\n'
-                           '4. return to menu:\n'))
-        if choice in range(1, 5):
+        choice = input('Would you like to order:\n'
+                       '1. maximum items\n'
+                       '2. different number of items\n'
+                       '3. check another item\n'
+                       '4. return to menu:\n')
+        if choice in ['1', '2', '3']:
             return choice
         else:
             print("Answer unknown, these are possible answers: ")
@@ -75,7 +101,7 @@ def ordering_logic():
     while not back_to_menu:
 
         item_to_search = input("What is the name of the item? ")
-        available_items_dict = searching_engine(item_to_search)
+        available_items_dict = searching_logic(item_to_search)
         sum_of_available_items = sum(available_items_dict.values())
 
         if sum_of_available_items > 0:
