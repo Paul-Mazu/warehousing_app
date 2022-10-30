@@ -71,8 +71,9 @@ def searching_logic(item):
                 item_pick_from_number = input('Choose number or "0" to return to search: ')
                 if int(item_pick_from_number) == 0:
                     return {}
-                elif int(item_pick_from_number) in range(len(wh_tuple)):
+                elif int(item_pick_from_number) in range(len(wh_tuple)+1):
                     item = wh_tuple[int(item_pick_from_number)-1]
+                    print(f'You have chosen: {item}')
             else:
                 return {}
 
@@ -84,7 +85,7 @@ def order_max_or_not():
                        '2. different number of items\n'
                        '3. check another item\n'
                        '4. return to menu:\n')
-        if choice in ['1', '2', '3']:
+        if choice in ['1', '2', '3', '4']:
             return choice
         else:
             print("Answer unknown, these are possible answers: ")
@@ -149,7 +150,7 @@ def ordering_items(item, sum_of_available_items):
 
         else:
             print(f"There is only {sum_of_available_items} items available")
-            answer = order_max_or_not()
+            answer = int(order_max_or_not())
 
             if answer == 1:
                 print(f"{sum_of_available_items} of {item} have been ordered")
