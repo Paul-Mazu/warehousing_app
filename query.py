@@ -59,12 +59,12 @@ def searching_logic(item):
             return available_items_dictionary
         else:
             wh_set = {i for i in warehouse1 if item.lower() in i.lower()} | {i for i in warehouse2 if item.lower() in i.lower()}
-            wh_tuple = tuple(wh_set)
+            wh_tuple = sorted(tuple(wh_set))
             if len(wh_set) > 0:
                 print('We did not find the item, did you mean?: ')
                 print('0. Go back')
                 counter = 0
-                for i in wh_set:
+                for i in wh_tuple:
                     counter += 1
                     print(f'{counter}. {i}')
 
