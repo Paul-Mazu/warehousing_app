@@ -1,6 +1,6 @@
-import pprint
-
 from data import warehouse1, warehouse2
+import os
+# os.system('clear')
 
 while True:
     user_name = input("What is your user name?: ")
@@ -17,6 +17,7 @@ def start():
 
 def menu():
     while True:
+        
         user_choice = input(
             '\nWhat would you like to do?\n'
             '1. List items by warehouse\n'
@@ -54,19 +55,20 @@ def searching_logic(item):
         available_items_in_warehouse2 = warehouse2.count(item.capitalize())
         available_items_dictionary = {"warehouse1": available_items_in_warehouse1,
                                       "warehouse2": available_items_in_warehouse2}
-        suma = available_items_in_warehouse1 + available_items_in_warehouse2
-        if suma > 0:
+        sum_of_av_items = available_items_in_warehouse1 + available_items_in_warehouse2
+
+        if sum_of_av_items > 0:
             return available_items_dictionary
         else:
             wh_set = {i for i in warehouse1 if item.lower() in i.lower()} | {i for i in warehouse2 if item.lower() in i.lower()}
             wh_tuple = sorted(tuple(wh_set))
-            if len(wh_set) > 0:
+
+            if len(wh_tuple) > 0:
                 print('We did not find the item, did you mean?: ')
                 print('0. Go back')
-                counter = 0
-                for i in wh_tuple:
-                    counter += 1
-                    print(f'{counter}. {i}')
+
+                for num, i in enumerate(wh_tuple, start=1):
+                    print(f'{num}. {i}')
 
                 item_pick_from_number = input('Choose number or "0" to return to search: ')
                 if int(item_pick_from_number) == 0:
