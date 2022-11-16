@@ -1,5 +1,4 @@
 import searching
-from query import user_name
 
 ### run search and receive back dictionary with items
 ### if values > 0 order -> go to fun: search, otherwise, ask if search again
@@ -86,6 +85,6 @@ def order_max_or_not():
 
 
 def want_check_another_item():
-    check_other_item = input(f'Would you like to check another item {user_name}? (y/n): ')
+    check_other_item = input(f'Would you like to check another item? (y/n): ')
     if check_other_item == "n":
         return "n"

@@ -1,23 +1,24 @@
-#import os    os.system('clear')
-
+### import os    os.system('clear')
 import search_and_order_logic
 from data import warehouse1, warehouse2
 from print_items import printing_warehouses
 
-while True:
-    user_name = input("What is your user name?: ")
-    if len(user_name):
-        break
-    else:
-        print('Please input your user name')
+def get_username():
+    while True:
+        user_name = input("What is your user name?: ")
+        if len(user_name):
+            return user_name
+        else:
+            print('Please input your user name')
 
 
 def start():
+    user_name = get_username()
     print(f"Hello {user_name}!")
-    menu()
+    menu(user_name)
 
 
-def menu():
+def menu(user_name):
     while True:
         
         user_choice = input(
