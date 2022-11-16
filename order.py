@@ -4,10 +4,7 @@ def if_order(item, sum, stock):
     choice = input('Would you like to order this item? y/n: ')
     if choice == 'y':
         order_item(item, sum)
-    else:
-        choice1 = input('Would you like to check another item? y/n: ')
-        if choice1 == 'y':
-            search.search_for_item(stock)
+
 
 def order_item(item, sum_of_available_items):
     correct_order = False

@@ -26,8 +26,8 @@ def menu(user_name):
             stock.print_warehouses()
 
         elif user_choice == '2':
-            res = search.search_for_item(stock)
-            order.if_order(*res, stock)
+            search.search_for_item(stock)
+                    
 
         elif user_choice == '3':
             print(f"Thank you for your visiting {user_name}")

@@ -1,6 +1,9 @@
+import order
+
 def search_for_item(stock):
 
     searched_item = input("Write the name of the searched item? ")
+
     while searched_item:
         available_items_dic = stock.amount_items_on_stock(searched_item)
         sum_of_av_items = sum(available_items_dic.values())
@@ -10,7 +13,14 @@ def search_for_item(stock):
 
             for k, v in available_items_dic.items():
                 print(f'In {k} is available {v} ea of {searched_item}')
-            return (searched_item, sum_of_av_items)
+
+            order.if_order(searched_item, sum_of_av_items, stock)
+
+            search_again = input('Would you like to search another item? (y/n): ')
+            if search_again == 'y':
+                searched_item = input("Write the name of the searched item? ")
+            else:
+                searched_item = None
 
         else:
             searched_item = check_possible(stock, searched_item)
