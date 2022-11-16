@@ -1,26 +1,20 @@
 ### import os    os.system('clear')
-import search_and_order_logic
-from data import warehouse1, warehouse2
-from print_items import printing_warehouses
+import order
+import search
+from stock import Stock
+from user import User
 
-def get_username():
-    while True:
-        user_name = input("What is your user name?: ")
-        if len(user_name):
-            return user_name
-        else:
-            print('Please input your user name')
-
+stock = Stock()
 
 def start():
-    user_name = get_username()
-    print(f"Hello {user_name}!")
-    menu(user_name)
-
+    user = User()
+    user.set_username()
+    print(f"Hello {user.user_name}!")
+    menu(user.user_name)
 
 def menu(user_name):
     while True:
-        
+    
         user_choice = input(
             '\nWhat would you like to do?\n'
             '1. List items by warehouse\n'
@@ -29,10 +23,11 @@ def menu(user_name):
             'Type the number of the operation: ')
 
         if user_choice == '1':
-            printing_warehouses()
+            stock.print_warehouses()
 
         elif user_choice == '2':
-            search_and_order_logic.search_and_order()
+            res = search.search_for_item(stock)
+            order.if_order(*res, stock)
 
         elif user_choice == '3':
             print(f"Thank you for your visiting {user_name}")
