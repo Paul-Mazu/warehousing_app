@@ -1,10 +1,8 @@
 ### import os    os.system('clear')
-import order
 import search
-from stock import Stock
 from user import User
+import stock
 
-stock = Stock()
 
 def start():
     user = User()
@@ -19,21 +17,25 @@ def menu(user_name):
             '\nWhat would you like to do?\n'
             '1. List items by warehouse\n'
             '2. Search an item and place an order\n'
-            '3. Quit\n'
+            '3. Browse by category\n'
+            '4. Quit\n'
             'Type the number of the operation: ')
 
         if user_choice == '1':
-            stock.print_warehouses()
+            stock.print_items()
 
         elif user_choice == '2':
-            search.search_for_item(stock)
-                    
+            search.search_for_item()
 
         elif user_choice == '3':
+            search.search_by_category()
+
+        elif user_choice == '4':
             print(f"Thank you for your visiting {user_name}")
             break
 
         else:
             print("You can chose only 1 - 3 for now\n")
 
-start()
+if __name__ == '__main__':
+    start()

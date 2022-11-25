@@ -1,11 +1,3 @@
-import search
-
-def if_order(item, sum, stock):
-    choice = input('Would you like to order this item? y/n: ')
-    if choice == 'y':
-        order_item(item, sum)
-
-
 def order_item(item, sum_of_available_items):
     correct_order = False
     while not correct_order:
@@ -13,12 +5,13 @@ def order_item(item, sum_of_available_items):
         number_of_items_to_order = int(input("How many items would you like to order?: "))
 
         if sum_of_available_items >= number_of_items_to_order > 0:
-            print(f"{number_of_items_to_order} of {item} have been ordered")
+            print(f"{number_of_items_to_order} of {item} have been ordered, thank you")
             correct_order = True
 
         elif number_of_items_to_order < 1:
             print("The number of items is incorrect")
             if input("Do you still want to order the item? (y/n)") == "n":
+                print('Thank you')
                 correct_order = True
 
         else:
@@ -33,7 +26,15 @@ def order_item(item, sum_of_available_items):
                 print(f'You can order maximally {sum_of_available_items} items')
 
             elif answer == 3:
-                return 'check another'
+                break
 
-            elif answer == 4:
-                return True
+def order_max_or_not():
+    while True:
+        choice = input('Would you like to order:\n'
+                       '1. maximum items\n'
+                       '2. different number of items\n'
+                       '3. go back to menu\n')
+        if choice in ('1', '2', '3'):
+            return choice
+        else:
+            print("Answer unknown, these are possible answers: ")
