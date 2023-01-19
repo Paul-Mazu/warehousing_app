@@ -62,6 +62,7 @@ def menu(user):
 
         if user_choice == '1':
             stock.print_items()
+            user.history.append('You have listed all available items')
 
         elif user_choice == '2':
             search.search_for_item(user)
@@ -70,6 +71,8 @@ def menu(user):
             search.search_by_category()
 
         elif user_choice == '4':
+            print('Your history of search: ')
+            user.print_history()
             print(f"Thank you for your visiting {user.user_name}")
             break
 

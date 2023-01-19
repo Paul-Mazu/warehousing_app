@@ -8,7 +8,7 @@ def search_for_item(user, searched_item=None):
         searched_item = input("Write the name of the searched item? ")
 
     while searched_item:
-
+        user.history.append(f'You have searched for: {searched_item}')
         available_items_list = stock.amount_items_on_stock(searched_item)
         sum_of_av_items = len(available_items_list)
 
@@ -24,7 +24,7 @@ def search_for_item(user, searched_item=None):
                 if not user.allowed:
                     print('You have to be signed in to order')
                 else:
-                    order.order_item(searched_item, sum_of_av_items)
+                    order.order_item(user, searched_item, sum_of_av_items)
             break
 
         else:

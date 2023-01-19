@@ -1,4 +1,4 @@
-def order_item(item, sum_of_available_items):
+def order_item(user, item, sum_of_available_items):
     correct_order = False
     while not correct_order:
 
@@ -6,6 +6,7 @@ def order_item(item, sum_of_available_items):
 
         if sum_of_available_items >= number_of_items_to_order > 0:
             print(f"{number_of_items_to_order} of {item} have been ordered, thank you")
+            user.history.append(f'You have ordered {number_of_items_to_order} of {item}')
             correct_order = True
 
         elif number_of_items_to_order < 1:
@@ -20,6 +21,7 @@ def order_item(item, sum_of_available_items):
 
             if answer == 1:
                 print(f"{sum_of_available_items} of {item} have been ordered")
+                user.history.append(f'You have ordered {sum_of_available_items} of {item}')
                 correct_order = True
 
             elif answer == 2:
