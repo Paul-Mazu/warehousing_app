@@ -48,14 +48,16 @@ def check_possible(searched_item):
         print('Item not found')
 
 
-def search_by_category():
+def search_by_category(user):
+    user.history.append('You have listed categories')
     categories = stock.list_categories()
     a_list = []
     for n, (k, v) in enumerate(categories.items()):
         print(f'{n}. {k:12} {v}')
         a_list.append(k)
     choice = int(input('Pick the number to choose category: '))
-    search_for_item(a_list[choice])
+    # user.history.append(f'You have chosen {a_list[choice]}')
+    search_for_item(user, a_list[choice])
 
 
 def search_again():

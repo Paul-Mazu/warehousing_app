@@ -68,7 +68,7 @@ def menu(user):
             search.search_for_item(user)
 
         elif user_choice == '3':
-            search.search_by_category()
+            search.search_by_category(user)
 
         elif user_choice == '4':
             print('Your history of search: ')
