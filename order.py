@@ -28,6 +28,7 @@ def order_item(item, sum_of_available_items):
             elif answer == 3:
                 break
 
+
 def order_max_or_not():
     while True:
         choice = input('Would you like to order:\n'
