@@ -1,6 +1,3 @@
-from sample.data import personnel
-
-
 class User:
 
     def __init__(self, user_name='Guest', password=None) -> None:

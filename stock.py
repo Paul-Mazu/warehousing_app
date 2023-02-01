@@ -1,5 +1,5 @@
 from collections import Counter
-from sample.data import stock
+from cli.data import stock
 
 
 def print_items():

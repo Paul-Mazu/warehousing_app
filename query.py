@@ -1,7 +1,7 @@
 import search
 from user import User
 import stock
-from sample.data import personnel
+from cli.data import personnel
 
 
 def start():
