@@ -67,3 +67,7 @@ class Loader:
     def __iter__(self, *args, **kwargs):
         """Iterate through the objects."""
         yield from self.objects
+
+
+pers = Loader(model="employees")
+

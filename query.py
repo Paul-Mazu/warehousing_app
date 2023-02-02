@@ -1,7 +1,6 @@
 import search
 from user import User
 import stock
-from cli.data import personnel
 
 
 def start():
@@ -27,25 +26,17 @@ def user_name_pass():
     while again == '1':
         user_name = input('What is your user name?: ')
         password = input('What is your password?: ')
-        if checker(personnel, user_name, password):
-            return User(user_name, password)
+        user = User(user_name, password)
+
+        if user.validated:
+            return user
         else:
             again = input('User name or password is incorrect\n'
                           'Try again?: 1\n'
                           'Sign in as guest: 2\n')
-    if again == '2':
-        print('You are logged in as Guest')
-        return User()
-
-
-def checker(lst, user, password):
-    for dic in lst:
-        if dic.get('user_name') == user and dic.get('password') == password:
-            return True
-        elif dic.get('head_of') is not None:
-            if checker(dic['head_of'], user, password):
-                return True
-    return False
+        if again == '2':
+            print('You are logged in as Guest')
+            return user
 
 
 def menu(user):
