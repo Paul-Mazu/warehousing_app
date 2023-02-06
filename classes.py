@@ -1,5 +1,4 @@
 import datetime
-from collections import Counter
 
 
 class Warehouse:
@@ -15,7 +14,7 @@ class Warehouse:
         self.stock.append(item)
 
     def search(self, searched_item: str):
-        return [item for item in self.stock if searched_item.lower() in item.__str__().lower()]
+        return [item for item in self.stock if searched_item.lower() == item.__str__().lower()]
 
     def print_items(self):
         print(f'Warehouse: {self.warehouse_id}')
@@ -53,7 +52,6 @@ class Item:
 
     def __format__(self, format_spec):
         return f"{self.__str__():{format_spec}}"
-
 
 
 class User:

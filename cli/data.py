@@ -7,19 +7,6 @@ personnel = [
                                                             {"user_name": "Matthew", "password": "smith"}]}
 ]
 
-# def flatten(lst):
-#     flattened = []
-#     for el in lst:
-#         if "head_of" in el:
-#             flattened.append(el)
-#             flattened.extend(flatten(el["head_of"]))
-#         else:
-#             flattened.append(el)
-#     return flattened
-#
-# flat = flatten(personnel)
-# print(len(flat))
-
 stock = [{"state": "High quality", "category": "USB hub", "warehouse": 1, "date_of_stock": "2020-08-01 02:58:45"},
          {"state": "Exceptional", "category": "iOS charger", "warehouse": 1, "date_of_stock": "2021-03-08 13:22:31"},
          {"state": "Elegant", "category": "GPS", "warehouse": 1, "date_of_stock": "2020-09-08 01:32:03"},

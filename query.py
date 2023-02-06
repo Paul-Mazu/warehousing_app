@@ -1,4 +1,3 @@
-import search
 from cli.loader import Loader
 from classes import User
 
@@ -75,20 +74,25 @@ def menu(user):
             for warehouse in stock:
                 number_all_items += warehouse.occupancy()
                 print(f'Warehouse: {warehouse.warehouse_id}: {warehouse.occupancy()}ea')
-            user.add_to_history(f'You were listing all items and {number_all_items} items was listed')
+            if user.is_authenticated:
+                user.add_to_history(f'You were listing all items and {number_all_items} items was listed')
 
         elif user_choice == '2':
             item = input('What are you looking for: ')
             found_items = searched_items(item)
-            for item in found_items:
-                print(f'Warehouse: {item.warehouse_id}, {item}, on stock since: {item.date_of_stock}')
+            if found_items:
+                for item in found_items:
+                    print(f'Warehouse: {item.warehouse_id}, {item}, on stock since: {item.date_of_stock}')
+            else:
+                print('Unfortunately the given item was not found in the stock')
+
             if user.is_authenticated:
                 user.add_to_history(f'Your were looking for {item} and {len(found_items)}ea were found')
                 order_menu(user, found_items[-1])
 
         elif user_choice == '3':
-            print('Your history of search: ')
             if user.is_authenticated:
+                print('Your history of search: ')
                 user.print_history()
             user.bye()
             break
