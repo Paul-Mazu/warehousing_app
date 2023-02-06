@@ -1,6 +1,9 @@
 import search
-from user import User
-import stock
+from cli.loader import Loader
+from classes import User
+
+personnel = Loader(model="personnel")
+stock = Loader(model="stock")
 
 
 def start():
@@ -21,14 +24,22 @@ def start():
         menu(user)
 
 
+def authenticate(name, password):
+    for employee in personnel:
+        if employee.is_named(name):
+            if employee.authenticate(password):
+                return employee
+    return User()
+
+
 def user_name_pass():
     again = '1'
     while again == '1':
         user_name = input('What is your user name?: ')
         password = input('What is your password?: ')
-        user = User(user_name, password)
+        user = authenticate(user_name, password)
 
-        if user.validated:
+        if user.is_authenticated:
             return user
         else:
             again = input('User name or password is incorrect\n'
@@ -39,36 +50,60 @@ def user_name_pass():
             return user
 
 
+def searched_items(item):
+    found_items = []
+    for warehouse in stock:
+        found_items.extend(warehouse.search(item))
+    return found_items
+
+
 def menu(user):
-    print(f"Welcome {user.user_name}!")
+    user.greet()
     while True:
 
         user_choice = input(
             '\nWhat would you like to do?\n'
             '1. List items by warehouse\n'
             '2. Search an item and place an order\n'
-            '3. Browse by category\n'
-            '4. Quit\n'
+            '3. Quit\n'
             'Type the number of the operation: ')
 
         if user_choice == '1':
-            stock.print_items()
-            user.history.append('You have listed all available items')
+            for warehouse in stock:
+                warehouse.print_items()
+            number_all_items = 0
+            for warehouse in stock:
+                number_all_items += warehouse.occupancy()
+                print(f'Warehouse: {warehouse.warehouse_id}: {warehouse.occupancy()}ea')
+            user.add_to_history(f'You were listing all items and {number_all_items} items was listed')
 
         elif user_choice == '2':
-            search.search_for_item(user)
+            item = input('What are you looking for: ')
+            found_items = searched_items(item)
+            for item in found_items:
+                print(f'Warehouse: {item.warehouse_id}, {item}, on stock since: {item.date_of_stock}')
+            if user.is_authenticated:
+                user.add_to_history(f'Your were looking for {item} and {len(found_items)}ea were found')
+                order_menu(user, found_items[-1])
 
         elif user_choice == '3':
-            search.search_by_category(user)
-
-        elif user_choice == '4':
             print('Your history of search: ')
-            user.print_history()
-            print(f"Thank you for your visiting {user.user_name}")
+            if user.is_authenticated:
+                user.print_history()
+            user.bye()
             break
 
         else:
             print("You can chose only 1 - 3 for now\n")
+
+
+def order_menu(user, item):
+    order = input('Would you like to order this item? y/n: ')
+    if order == 'y':
+        amount = input('How many items would you like to order?: ')
+        order = user.order(item, int(amount))
+        print(order)
+        user.add_to_history(order)
 
 
 if __name__ == '__main__':

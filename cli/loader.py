@@ -1,7 +1,7 @@
 """Data loader."""
 
-from data import personnel as employees
-from data import stock as items
+from cli.data import personnel as employees
+from cli.data import stock as items
 
 
 class MissingClassError(Exception):
@@ -49,8 +49,18 @@ class Loader:
     def __parse_personnel(self):
         """Parse the personnel list."""
         Employee = self.__load_class("Employee")
+        employees1 = self.flatten(employees)
+        return [Employee(**employee) for employee in employees1]
 
-        return [Employee(**employee) for employee in employees]
+    def flatten(self, lst):
+        flattened = []
+        for el in lst:
+            if "head_of" in el:
+                flattened.append(el)
+                flattened.extend(self.flatten(el["head_of"]))
+            else:
+                flattened.append(el)
+        return flattened
 
     def __parse_stock(self):
         """Parse the stock."""
@@ -69,5 +79,10 @@ class Loader:
         yield from self.objects
 
 
-pers = Loader(model="employees")
+# stock = Loader(model="stock")
+# for i in stock:
+#     i.print_items()
 
+# personnel = Loader(model="personnel")
+# for i in personnel:
+#     print(i)
