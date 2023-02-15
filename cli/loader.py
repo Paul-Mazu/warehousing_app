@@ -78,7 +78,6 @@ class Loader:
         """Iterate through the objects."""
         yield from self.objects
 
-
 # stock = Loader(model="stock")
 # for i in stock:
 #     i.print_items()

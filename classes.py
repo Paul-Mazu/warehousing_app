@@ -112,3 +112,4 @@ please contact technical support.''')
     def print_history(self):
         for el in self.history:
             print(el)
+

@@ -28,7 +28,8 @@ def authenticate(name, password):
         if employee.is_named(name):
             if employee.authenticate(password):
                 return employee
-    return User()
+    user = User()
+    return user
 
 
 def user_name_pass():
