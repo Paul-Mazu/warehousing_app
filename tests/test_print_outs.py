@@ -19,6 +19,6 @@ def mock_output(mock):
     __builtins__.print = original_print
 
 
-def test_username():
-    with mock_input('Pawel'):
-        query.
+# def test_username():
+#     with mock_input('Pawel'):
+#         query.
