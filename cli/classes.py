@@ -30,6 +30,7 @@ class Warehouse:
                 dic[item] += 1
         return dic
 
+
 class Item:
 
     def __init__(self, state, category, warehouse, date_of_stock: datetime):
