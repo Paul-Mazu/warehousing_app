@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Paul-Mazu/warehousing_app?color=1d7147&style=for-the-badge) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/Paul-Mazu/warehousing_app?color=EAE6B4&style=for-the-badge) ![GitHub milestones](https://img.shields.io/github/milestones/all/Paul-Mazu/warehousing_app?color=F2F2F2&style=for-the-badge) ![GitHub language count](https://img.shields.io/github/languages/count/Paul-Mazu/warehousing_app?color=62B096&style=for-the-badge)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Paul-Mazu/warehousing_app?color=1d7147&style=for-the-badge)![GitHub language count](https://img.shields.io/github/languages/count/Paul-Mazu/warehousing_app?color=62B096&style=for-the-badge)
 </div>
 
 <div align="center">
@@ -18,11 +18,19 @@
 
 ## About
 
-The application is a showcase of backend (OOP) programming skills and knowledge of data types and pure structure of Python3.  
-
 The Warehouse Management System is a command-line application that helps manage stock items in a warehouse.  
 It provides functionality to search for items, place orders, and view available stock.  
 The system also allows users to sign in as guests or registered users.  
+
+Incorporated skillset:
+
+* fundamental programming concepts
+* data manipulation
+* database management
+* object oriented programming
+* algorithmic thinking
+* testing
+* modularization
 
 ## Prerequisites
 
