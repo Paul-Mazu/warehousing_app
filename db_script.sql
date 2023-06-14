@@ -20,7 +20,6 @@ CREATE TABLE item(
 CREATE EXTENSION pgcrypto;
 
 CREATE TABLE employee(
-    id SERIAL,
     user_name VARCHAR(20) NOT NULL PRIMARY KEY,
     password TEXT NOT NULL,
     lead_by VARCHAR(20) REFERENCES employee(user_name)
